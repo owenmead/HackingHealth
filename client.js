@@ -2,9 +2,30 @@
 // it is backed by a MongoDB collection named "players".
 
 Notifications = new Meteor.Collection("notifications");
+Subscribers = new Meteor.Collection("subscribers");
 
 // Regular examples goes here
 if (Meteor.isClient) {
+  // https://github.com/sqow/multiple-view-example/blob/master/multiple-view-example.js
+  var callbacks = {
+    '/':		function() {
+    },
+    '/complete/':		function() {
+    },
+  },
+  noop = function(){};
+  function getCallback( data ) {
+    return callbacks.hasOwnProperty( data ) ? callbacks[ data ] : noop;
+  }
+  Template.body.page_is = function( data, options ) {
+    if ( Session.equals( 'page', data ) ) {
+      setTimeout( getCallback( data ), 0 );
+      return options.fn( this );
+    }
+    return options.inverse( this );
+  };
+
+
   // This is me doing stuff
   Template.notificationboard.notifications = function() {
     return Notifications.find({}, {sort: {message: 1}});
@@ -31,6 +52,8 @@ if (Meteor.isClient) {
 
       new_input.value = "";
       new_input.focus();
+
+      evnt.preventDefault();
     }
   });
 }

@@ -1,13 +1,27 @@
 <head>
   <title>Notification Board</title>
+  <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+  <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">  
 </head>
 
 <body>
-  {{> notificationboard}}
+  {{> body}}
 </body>
 
+<template name="body">
+  <div class="container">
+    {{#page_is "/"}}
+      {{> notificationboard}}
+    {{/page_is}}
+    {{#page_is "/complete/"}}
+      {{> complete}}
+    {{/page_is}}
+  </div>
+</template>
+
 <template name="notificationboard">
-  <table cellspacing="5">
+  <h4>Notifications</h4>
+  <table class="table table-striped">
     <tr>
       <th>Status</th>
       <th>Message</th>
@@ -31,6 +45,12 @@
 </template>
 
 <template name="create_notification">
-  <input type="text" placeholder="New Notification"></input>
-  <button>Add</button>
+  <form class="form form-inline">
+    <input type="text" placeholder="New Notification"></input>
+    <button class="btn">Add</button>
+  </form>
+</template>
+
+<template name="complete">
+  <h3>All Done!</h3>
 </template>
