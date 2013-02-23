@@ -7,21 +7,24 @@ Notifications = new Meteor.Collection("notifications");
 if (Meteor.isClient) {
   // This is me doing stuff
   Template.notificationboard.notifications = function() {
-    return Notifications.find({}, {sort: {name: 1}});
+    return Notifications.find({}, {sort: {message: 1}});
   }
   Template.notificationitem.helpers({
     formated_date: function() {
       return moment(this.created).format("MMM Do YYYY, hh:mm");
+    },
+    get_url: function(a, b, c) {
+      return URL_ROUTES['completeNotification'](this._id);
     }
   });
   Template.create_notification.events({
-    'click button': function (evnt, tmplt, other) {
+    'click button': function (evnt, tmplt) {
       var new_input = tmplt.find('input');
-      var new_notification_name = new_input.value;
-      if (new_notification_name) {
+      var new_notification_message = new_input.value;
+      if (new_notification_message) {
         Notifications.insert({
           status: "New",
-          name: new_notification_name,
+          message: new_notification_message,
           created: new Date()
         });
       }

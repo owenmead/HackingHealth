@@ -10,7 +10,7 @@
   <table cellspacing="5">
     <tr>
       <th>Status</th>
-      <th>Name</th>
+      <th>Message</th>
       <th>Created</th>
       <th>ID</th>
     </tr>
@@ -24,9 +24,9 @@
 <template name="notificationitem">
   <tr>
     <td>{{status}}</td>
-    <td>{{name}}</td>
+    <td>{{message}}</td>
     <td>{{formated_date}}</td>
-    <td>{{_id}}</td>
+    <td><a href="{{get_url}}">{{_id}}</a></td>
   </tr>
 </template>
 

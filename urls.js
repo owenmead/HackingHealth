@@ -1,11 +1,10 @@
 /*
  * URL Routing - Provide endpoints for various things like completing actions
  */
-
 if (Meteor.isClient) {
   var NotificationRouter = Backbone.Router.extend({
     routes: {
-      "complete/:notification_id": "completeNotification"
+      ":notification_id": "completeNotification"
     },
     completeNotification: function (notification_id) {
       Notifications.update(notification_id, {$set: {status: 'Complete'}});
@@ -17,3 +16,8 @@ if (Meteor.isClient) {
   });
 }
 
+var URL_ROUTES = {
+  completeNotification: function(notification_id) {
+    return "http://localhost:3000/" + notification_id;
+  }
+}
