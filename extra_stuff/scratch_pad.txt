@@ -1,3 +1,17 @@
 curl http://localhost:3000/api/v1/notifications
 
 curl -X PUT -d '{"$set":{"status":"Complete"}}' http://localhost:3000/api/v1/notifications/mWBxRvGhzkWb5dpes
+
+// SMS
+curl -X POST https://api.twilio.com/2010-04-01/Accounts/AC48016a8fbc5602f2320f4debf8f83169/SMS/Messages.json \
+   -u AC48016a8fbc5602f2320f4debf8f83169:5888eb4a3a2b799f9feeb57b442a6af4 \
+   -d "From=+15874101246" \
+   -d "To=+16043564548" \
+   -d 'Body=Testing things out'
+
+// Phone Call
+curl -X POST https://api.twilio.com/2010-04-01/Accounts/AC48016a8fbc5602f2320f4debf8f83169/Calls.json \
+   -u AC48016a8fbc5602f2320f4debf8f83169:5888eb4a3a2b799f9feeb57b442a6af4 \
+   -d "From=+15874101246" \
+   -d "To=+16043564548" \
+   -d 'Url=http%3A%2F%2Ftwimlets.com%2Fecho%3FTwiml%3D%253CResponse%253E%253CSay%253EThis%2Bis%2Bmy%2Btest%2Bmessage%252C%2Bkind%2Bof%2Bfun%2521%253C%252FSay%253E%253C%252FResponse%253E'
