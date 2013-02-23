@@ -1,0 +1,36 @@
+<head>
+  <title>Notification Board</title>
+</head>
+
+<body>
+  {{> notificationboard}}
+</body>
+
+<template name="notificationboard">
+  <table cellspacing="5">
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Created</th>
+      <th>ID</th>
+    </tr>
+    {{#each notifications}}
+      {{> notificationitem}}
+    {{/each}}
+  </table>
+  {{> create_notification}}
+</template>
+
+<template name="notificationitem">
+  <tr>
+    <td>{{status}}</td>
+    <td>{{name}}</td>
+    <td>{{formated_date}}</td>
+    <td>{{_id}}</td>
+  </tr>
+</template>
+
+<template name="create_notification">
+  <input type="text" placeholder="New Notification"></input>
+  <button>Add</button>
+</template>

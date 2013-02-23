@@ -1,0 +1,25 @@
+{
+  "meteor": {
+    "git": "https://github.com/meteor/meteor.git",
+    "branch": "master",
+    "commit": "2d8b41a87cec884489ead138b5dfea31487363f3"
+  },
+  "dependencies": {
+    "basePackages": {
+      "collection-api": {},
+      "moment": {}
+    },
+    "packages": {
+      "collection-api": {
+        "git": "https://github.com/crazytoad/meteor-collectionapi.git",
+        "tag": "v0.1.12",
+        "commit": "08a660b5d227b613fa38793f916c4dd055fb8ad0"
+      },
+      "moment": {
+        "git": "https://github.com/possibilities/meteor-moment.git",
+        "tag": "v1.7.0",
+        "commit": "c64b6ec0e714b9556f4b6643d430b868ba69d3d7"
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+curl http://localhost:3000/api/v1/notifications
+
+curl -X PUT -d '{"$set":{"status":"Complete"}}' http://localhost:3000/api/v1/notifications/mWBxRvGhzkWb5dpes
