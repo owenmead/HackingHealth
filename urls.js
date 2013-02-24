@@ -23,12 +23,12 @@ if (Meteor.isClient) {
   Router = new NotificationRouter;
 
   Meteor.startup(function () {
-    Meteor.subscribe("subscribers", function(){
-      Backbone.history.start({pushState: true});
-    });
-
     Meteor.subscribe("notifications", function(){
       // When the notifications come back
+    });
+
+    Meteor.subscribe("subscribers", function(){
+      Backbone.history.start({pushState: true});
     });
   });
 }
