@@ -1,6 +1,17 @@
 curl http://localhost:3000/api/v1/notifications
 
-curl -X PUT -d '{"$set":{"status":"Complete"}}' http://localhost:3000/api/v1/notifications/mWBxRvGhzkWb5dpes
+IN :
+'{"message":"Woot","due_by":"date_str"}'
+Out :
+url
+
+message : <txt>
+due_by : <UTCDate>
+
+Out:
+url : <TriggerAddress>
+
+curl -X PUT -d '{"message":"Woot","due_by":"date_str"}' http://localhost:3000/api/v1/notifications/
 
 // SMS
 curl -X POST https://api.twilio.com/2010-04-01/Accounts/AC48016a8fbc5602f2320f4debf8f83169/SMS/Messages.json \

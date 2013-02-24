@@ -2,29 +2,23 @@
  * URL Routing - Provide endpoints for various things like completing actions
  */
 if (Meteor.isClient) {
-  var NotificationRouter = Backbone.Router.extend({
-    routes: {
-      "" : "index",
-      "dashboard/" : "dashboard",
-      ":notification_id": "completeNotification"
-    },
-    index: function() {
+  Meteor.Router.add({
+    '/': function() {
       Session.set('page', '/');
     },
-    dashboard: function() {
+    "/dashboard": function() {
       Session.set('page', '/dashboard/');
     },
-    completeNotification: function (notification_id) {
+    "/:notification_id": function(notification_id) {
       Session.set('page', '/complete/');
       Notifications.update(notification_id, {$set: {status: 'Complete'}});
 
       var subscribers_to_fire = Subscribers.find({notification: notification_id});
       subscribers_to_fire.forEach(function (subscriber) {
-        process_subscriber(subscriber)
+        process_subscriber(subscriber);
       });
     }
   });
-  Router = new NotificationRouter;
 
   Meteor.startup(function () {
     Meteor.subscribe("notifications", function(){
@@ -32,7 +26,7 @@ if (Meteor.isClient) {
     });
 
     Meteor.subscribe("subscribers", function(){
-      Backbone.history.start({pushState: true});
+      // Backbone.history.start({pushState: true});
     });
   });
 }

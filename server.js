@@ -1,3 +1,10 @@
+// THIS IS A MASSIVE KLUDGE! FIX IT!
+var s4 = function() {
+  return Math.floor((1 + Math.random()) * 0x10000)
+             .toString(16)
+             .substring(1);
+};
+
 // On server startup, create some players if the database is empty.
 if (Meteor.isServer) {
   Notifications = new Meteor.Collection("notifications");
@@ -9,6 +16,27 @@ if (Meteor.isServer) {
     });
     Meteor.publish('subscribers', function() {
       return Subscribers.find();
+    });
+
+    // A really basic API endpoint : RIP THIS OUT AND FIX IT! ALL OF IT
+    Meteor.Router.add('/api/v1/notifications/', function(id) {
+      var body_json = Object.keys(this.request.body)[0];
+      var body_obj = JSON.parse(body_json);
+
+      var new_id = s4();
+
+      var notification = Notifications.insert({
+        _id: new_id,
+        status: "New",
+        message: body_obj['message'],
+        created: new Date()
+      });
+
+      Subscribers.insert({type: "sms",  notification: new_id});
+      Subscribers.insert({type: "web", notification: new_id});
+      Subscribers.insert({type: "call",  notification: new_id});
+
+      return URL_ROUTES['completeNotification'](new_id);
     });
 
     Meteor.methods({
