@@ -43,7 +43,6 @@ if (Meteor.isServer) {
     Meteor.methods({
       twilio_sms: function(to, body, notification) {
         //console.log("SENDING SMS TEMP DISABLED");
-        /*
         Meteor.http.post(
           'https://api.twilio.com/2010-04-01/Accounts/AC48016a8fbc5602f2320f4debf8f83169/SMS/Messages.json',
           {
@@ -58,12 +57,10 @@ if (Meteor.isServer) {
             // callback, but not using it right now
           }
         );
-        */
       },
 
       twilio_call: function(to, body, notification) {
-        console.log("CALLING SERVICE TEMP DISABLED");
-        /*
+        //console.log("CALLING SERVICE TEMP DISABLED");
         var encode_body = encodeURI(body);
         Meteor.http.post(
           'https://api.twilio.com/2010-04-01/Accounts/AC48016a8fbc5602f2320f4debf8f83169/Calls.json',
@@ -80,7 +77,6 @@ if (Meteor.isServer) {
             // callback, but not using it right now
           }
         );
-        */
       }
     })
   });
