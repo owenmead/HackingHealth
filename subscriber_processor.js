@@ -1,13 +1,14 @@
 function process_subscriber(subscriber) {
-  notification = Notifications.findOne({_id: subscriber.notification });
+  var notification = Notifications.findOne({_id: subscriber.notification });
+  var message_to_send = notification.message + ", is complete";
 
   if (subscriber.type == "sms") {
-    console.log("SMS: " + notification.message + " is complete");
+    Meteor.call('twilio_sms', "+16043564548", message_to_send);
   }
   if (subscriber.type == "web") {
-    console.log("WEB: " + notification.message + " is complete");
+    //console.log("WEB: " + notification.message + " is complete");
   }
   if (subscriber.type == "call") {
-    console.log("CALL: " + notification.message + " is complete");
+    Meteor.call('twilio_call', "+16043564548", message_to_send);
   }
 }

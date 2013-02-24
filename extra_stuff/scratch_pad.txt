@@ -15,3 +15,5 @@ curl -X POST https://api.twilio.com/2010-04-01/Accounts/AC48016a8fbc5602f2320f4d
    -d "From=+15874101246" \
    -d "To=+16043564548" \
    -d 'Url=http%3A%2F%2Ftwimlets.com%2Fecho%3FTwiml%3D%253CResponse%253E%253CSay%253EThis%2Bis%2Bmy%2Btest%2Bmessage%252C%2Bkind%2Bof%2Bfun%2521%253C%252FSay%253E%253C%252FResponse%253E'
+
+   
