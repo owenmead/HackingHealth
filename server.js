@@ -1,8 +1,7 @@
 // THIS IS A MASSIVE KLUDGE! FIX IT!
-var s4 = function() {
+var s6 = function() {
   return Math.floor((1 + Math.random()) * 0x10000)
-             .toString(16)
-             .substring(1);
+             .toString(16);
 };
 
 // On server startup, create some players if the database is empty.
@@ -23,7 +22,7 @@ if (Meteor.isServer) {
       var body_json = Object.keys(this.request.body)[0];
       var body_obj = JSON.parse(body_json);
 
-      var new_id = s4();
+      var new_id = s6();
 
       var notification = Notifications.insert({
         _id: new_id,

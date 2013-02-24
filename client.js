@@ -56,6 +56,7 @@ if (Meteor.isClient) {
         var send_call  = tmplt.find('input#subscribe_call').checked;
 
         var notification = Notifications.insert({
+          _id: s6(),
           status: "New",
           message: new_notification_message,
           created: new Date()
