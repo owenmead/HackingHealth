@@ -5,6 +5,7 @@ if (Meteor.isClient) {
   // Subscriptions in the URLS
 
   // https://github.com/sqow/multiple-view-example/blob/master/multiple-view-example.js
+  // Dealing with showing multiple pages
   var callbacks = {
     '/': function() {},
     '/complete/': function() {},
@@ -23,7 +24,14 @@ if (Meteor.isClient) {
   };
 
 
-  // This is me doing stuff
+  Template.homepage.events({
+    'click button': function(evnt, tmplt) {
+      evnt.preventDefault();
+      window.location = URL_ROUTES['completeNotification'](tmplt.find('input').value);
+    }
+  });
+
+  // Various controllers for the templates
   Template.notificationboard.notifications = function() {
     return Notifications.find({}, {sort: {message: 1}});
   }
