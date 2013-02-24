@@ -44,32 +44,6 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.complete.notification = function() {
-    return Session.get('cur_notification');
-  }
-  Template.complete.formated_created = function() {
-    var cur_session = Session.get('cur_notification');
-    if (cur_session) {
-      return moment(Session.get('cur_notification').created).format("MMM Do YYYY, HH:mm:ss");
-    }
-    return "";
-  }
-  Template.complete.formated_done = function() {
-    var cur_session = Session.get('cur_notification');
-    if (cur_session) {
-      return moment(Session.get('cur_notification').done_date).format("MMM Do YYYY, HH:mm:ss");
-    }
-    return "";
-  }
-  Template.complete.formated_verified = function() {
-    var cur_session = Session.get('cur_notification');
-    if (cur_session) {
-      return moment(Session.get('cur_notification').verified_date).format("MMM Do YYYY, HH:mm:ss");
-    }
-    return "";
-  }
-  
-  
   Template.create_notification.events({
     'click button': function (evnt, tmplt) {
       evnt.preventDefault();
