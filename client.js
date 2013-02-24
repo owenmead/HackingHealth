@@ -1,11 +1,9 @@
-// Set up a collection to contain player information. On the server,
-// it is backed by a MongoDB collection named "players".
-
-Notifications = new Meteor.Collection("notifications");
-Subscribers = new Meteor.Collection("subscribers");
-
-// Regular examples goes here
 if (Meteor.isClient) {
+
+  Notifications = new Meteor.Collection("notifications");
+  Subscribers = new Meteor.Collection("subscribers");
+  // Subscriptions in the URLS
+
   // https://github.com/sqow/multiple-view-example/blob/master/multiple-view-example.js
   var callbacks = {
     '/':		function() {
@@ -40,20 +38,30 @@ if (Meteor.isClient) {
   });
   Template.create_notification.events({
     'click button': function (evnt, tmplt) {
+      evnt.preventDefault();
+
       var new_input = tmplt.find('input');
       var new_notification_message = new_input.value;
       if (new_notification_message) {
-        Notifications.insert({
+        // This could be a LOT cleaner
+        var send_sms  = tmplt.find('input#subscribe_sms').checked;
+        var send_web = tmplt.find('input#subscribe_web').checked;
+        var send_call  = tmplt.find('input#subscribe_call').checked;
+
+        var notification = Notifications.insert({
           status: "New",
           message: new_notification_message,
           created: new Date()
+        }, function(error, _id) {
+          if (send_sms)  { Subscribers.insert({type: "sms",  notification: _id}); }
+          if (send_web) { Subscribers.insert({type: "web", notification: _id}); }
+          if (send_call)  { Subscribers.insert({type: "call",  notification: _id}); }
         });
       }
 
       new_input.value = "";
       new_input.focus();
 
-      evnt.preventDefault();
     }
   });
 }

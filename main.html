@@ -26,7 +26,7 @@
       <th>Status</th>
       <th>Message</th>
       <th>Created</th>
-      <th>ID</th>
+      <th class="hidden-phone">ID</th>
     </tr>
     {{#each notifications}}
       {{> notificationitem}}
@@ -40,14 +40,20 @@
     <td>{{status}}</td>
     <td>{{message}}</td>
     <td>{{formated_date}}</td>
-    <td><a href="{{get_url}}">{{_id}}</a></td>
+    <td class="hidden-phone"><a href="{{get_url}}">{{_id}}</a></td>
   </tr>
 </template>
 
 <template name="create_notification">
   <form class="form form-inline">
     <input type="text" placeholder="New Notification"></input>
-    <button class="btn">Add</button>
+    <button class="btn" style="margin-right: 20px;">Add</button>
+    <div style="display:inline-block;">
+      <strong>Notify Via: </strong>
+      <label class="checkbox"><input type="checkbox" id="subscribe_sms" value="sms"> SMS</label>
+      <label class="checkbox"><input type="checkbox" id="subscribe_web" value="web"> Web</label>
+      <label class="checkbox"><input type="checkbox" id="subscribe_call" value="call"> Call</label>
+    </div>
   </form>
 </template>
 
