@@ -5,10 +5,14 @@ if (Meteor.isClient) {
   var NotificationRouter = Backbone.Router.extend({
     routes: {
       "" : "index",
+      "dashboard/" : "dashboard",
       ":notification_id": "completeNotification"
     },
     index: function() {
       Session.set('page', '/');
+    },
+    dashboard: function() {
+      Session.set('page', '/dashboard/');
     },
     completeNotification: function (notification_id) {
       Session.set('page', '/complete/');

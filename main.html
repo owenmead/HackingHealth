@@ -11,12 +11,23 @@
 <template name="body">
   <div class="container">
     {{#page_is "/"}}
+      {{> homepage}}
+    {{/page_is}}
+    {{#page_is "/dashboard/"}}
       {{> notificationboard}}
     {{/page_is}}
     {{#page_is "/complete/"}}
       {{> complete}}
     {{/page_is}}
   </div>
+</template>
+
+<template name="homepage">
+  <h2>Welcome - Enter Your Code</h2>
+  <form class="form form-inline">
+    <input type="text" placeholder="Enter Code Here"></input>
+    <button class="btn">Mark Complete</button>
+  </form>
 </template>
 
 <template name="notificationboard">

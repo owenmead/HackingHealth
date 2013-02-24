@@ -6,10 +6,9 @@ if (Meteor.isClient) {
 
   // https://github.com/sqow/multiple-view-example/blob/master/multiple-view-example.js
   var callbacks = {
-    '/':		function() {
-    },
-    '/complete/':		function() {
-    },
+    '/': function() {},
+    '/complete/': function() {},
+    '/dashboard/': function() {},
   },
   noop = function(){};
   function getCallback( data ) {
