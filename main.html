@@ -69,5 +69,26 @@
 </template>
 
 <template name="complete">
-  <h3>All Done!</h3>
+  <h3>Ticket: {{notification._id}}</h3>
+  <h4>Status: {{notification.status}}</h4>
+  <table cellpadding="5">
+    <tr>
+      <td align="right"><strong>Created:</strong></td>
+      <td>{{formated_created}}</td>
+    </tr>
+    <tr>
+      <td align="right"><strong>Done:</strong></td>
+      <td>{{formated_done}}</td>
+    </tr>
+    <tr>
+      <td align="right"><strong>Verified:</strong></td>
+      <td>
+        {{#if notification.verified_date}}
+          <span style="background-color: yellow;">{{formated_verified}}</span>
+        {{else}}
+          <span style="color: #999;">Pending . . .</span>
+        {{/if}}
+      </td>
+    </tr>
+  </table>
 </template>
