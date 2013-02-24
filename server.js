@@ -35,7 +35,9 @@ if (Meteor.isServer) {
       Subscribers.insert({type: "web", notification: new_id});
       Subscribers.insert({type: "call",  notification: new_id});
 
-      return URL_ROUTES['completeNotification'](new_id);
+      // Aaron just wants the ID
+      return new_id
+      //return URL_ROUTES['completeNotification'](new_id);
     });
 
     Meteor.methods({
