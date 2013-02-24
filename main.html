@@ -37,7 +37,7 @@
       <th>Status</th>
       <th>Message</th>
       <th>Created</th>
-      <th class="hidden-phone">ID</th>
+      <th>ID</th>
     </tr>
     {{#each notifications}}
       {{> notificationitem}}
@@ -51,7 +51,7 @@
     <td>{{status}}</td>
     <td>{{message}}</td>
     <td>{{formated_date}}</td>
-    <td class="hidden-phone"><a href="{{get_url}}">{{_id}}</a></td>
+    <td><a href="{{get_url}}">{{_id}}</a></td>
   </tr>
 </template>
 
